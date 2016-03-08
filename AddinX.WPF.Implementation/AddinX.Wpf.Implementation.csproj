@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AddinX.Wpf.Contract, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AddinX.Wpf.Contract.1.0.0\lib\net45\AddinX.Wpf.Contract.dll</HintPath>
+      <HintPath>..\packages\AddinX.Wpf.Contract.1.0.3\lib\net45\AddinX.Wpf.Contract.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelDna.Integration, Version=0.33.5730.40390, Culture=neutral, processorArchitecture=MSIL">
