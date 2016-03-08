@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Forms.Integration;
 using AddinX.Wpf.Contract;
 using ExcelDna.Integration;
@@ -9,16 +7,9 @@ namespace AddinX.Wpf.Implementation
 {
     public class ExcelDnaWpfHelper : IWpfHelper
     {
-        public async void Show(Window window, TaskCreationOptions taskOption = TaskCreationOptions.None)
+        public void Show(Window window)
         {
-            if (SynchronizationContext.Current == null)
-            {
-                SynchronizationContext
-                    .SetSynchronizationContext(new ExcelSynchronizationContext());
-            }
-            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-
-            await Task.Factory.StartNew(() =>
+            ExcelAsyncUtil.QueueAsMacro(() =>
             {
                 if (null == System.Windows.Application.Current)
                 {
@@ -31,7 +22,7 @@ namespace AddinX.Wpf.Implementation
                     System.Windows.Application.Current.MainWindow = window;
                 }
                 window.ShowDialog();
-            }, CancellationToken.None, taskOption, scheduler);
+            });
         }
     }
 }
